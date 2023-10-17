@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  spring-reactive:
+    build: ./reactive-server
+    container_name: spring-reactive
+    environment:
+      SPRING_DATA_MONGODB_URI: "mongodb://mongo:27017/event"
+      SPRING_DATA_MONGODB_USERNAME: "root"
+      SPRING_DATA_MONGODB_PASSWORD: "root"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017
